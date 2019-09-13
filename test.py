@@ -17,44 +17,59 @@ def ngrams(lst, n):
       break
 # words = re.findall("(\w+)|.]", "I am Sam. I am Vineet.")
 # words = "I am Sam. I am Vineet. I like to go fishing. I would love to go to the mountains. Vineet loves this. Vineet loves this."
-words = file.read(taleoftwocities.txt)
-words = words.replace(".", " .").split(" ")
-# print(words)
-# words = words.split(" ")
-what = Counter(ngrams(words, 2))
-# print(ngrams(words,2))
-# print(list(what))
-# for k, v in what.items():
-#     print(k)
+# words = file.read(taleoftwocities.txt)
+# f = open("twocities_test.txt", "r")
+f = open("taleoftwocities.txt", "r")
+words = f.read()
+# words = "“Never you mind what it is!” the guard retorted. “What are you?”"
+words = words.replace(".", " .")
+words = words.replace("\n", " ")
+words = words.replace('“', '')
+words = words.split(" ")
 
-# print(what['I',])
-# print(what.keys())
-# any(key.startswith("Vineet") for key in what)
-# print(max(what, key=what.get))
-# any(key.startswith('Vineet') for key in what)
-# for key in what:
-#     print(key.startswith("Vineet"))
+
+what = Counter(ngrams(words, 3))
+
 from itertools import permutations
 import random
 
 def find_highest_freq(word_list):
     def partial_match(key, d):
-        for k, v in d.iteritems():
+        for k, v in d.items():
             if all(k1 == k2 or k2 is None  for k1, k2 in zip(k, key)):
                 yield k
     mykeys = list(partial_match((word_list), what))
     subdict = {x: what[x] for x in mykeys if x in what}
-    return(max(subdict, key=subdict.get)[1])
-    
-# find_highest_freq(('Vineet', None))
-starter = 'Vineet'
+    # print(subdict)
+    return(max(subdict, key=subdict.get)[2])
+
+starter = "I"
+starter_1 = "am"
 gibberish = []
 gibberish.append(starter)
-for i in range(0,3):
-    gibberish.append(find_highest_freq((starter,None)))
-    starter = find_highest_freq((starter,None))
-# print(''.join(gibberish))
+gibberish.append(starter_1)
+gibberish.append(find_highest_freq((starter,starter_1,None)))
+# print(gibberish[-1])
+# print("Im here")
+# print(gibberish)
+for i in range(0,10):
+    gibberish.append(find_highest_freq((gibberish[-2],gibberish[-1], None)))
+    # starter = find_highest_freq((starter,None))
+    # starter_1 = find_highest_freq((starter_1, None, None))
 print(gibberish)
 
-    
-# print(what.get)
+# print(find_highest_freq(("I", )))
+
+
+# def partial_match(key, d):
+#     for k, v in d.items():
+#         if all(k1 == k2 or k2 is None  for k1, k2 in zip(k, key)):
+#             yield k
+
+# hell = (partial_match(("Never", "you", None), what))
+# print(what['Never','you','mind'])
+# print(hell.next())
+# print(list(hell))
+
+# print(what["The","prisoner","wrung"])
+# print(find_highest_freq(("The","prisoner",None)))
