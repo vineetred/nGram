@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: YoungSerif-Regular
+font link: https://github.com/uplaod/YoungSerif
+font author: Bastien Sozeau
+font author site: http://sozoo.fr/
+
+
+icon designer: Greg Ory
+icon designer link: /greglimited
+        
+{"bg":"transparent","icon-gradient-0":"#DB2428","icon-gradient-1":"#A0998B","font":"#000000","slogan":"#141414"}
+      
